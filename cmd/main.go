@@ -6,7 +6,6 @@ import (
 
 func main() {
 	r := initmodule.Gin()
-
 	initmodule.StartHttpServer(r)
 
 }

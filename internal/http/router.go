@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// SetRouter ...
 func SetRouter(r *gin.Engine) {
 	r.GET("/ping", func(ctx *gin.Context) {
 		time.Sleep(time.Second * 20)

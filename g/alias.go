@@ -11,6 +11,7 @@ var (
 	Panic          = logger.Panic
 )
 
+// SetLogger ...
 func SetLogger(l log.Log) {
 	logger = l
 }

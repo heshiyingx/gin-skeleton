@@ -33,7 +33,7 @@ func init() {
 
 }
 
-// GetAddr 获取地址
+// GetAddr 获取地址.
 func (c *HttpConfig) GetAddr() string {
 	return fmt.Sprintf("%s:%d", c.Host, c.Port)
 }

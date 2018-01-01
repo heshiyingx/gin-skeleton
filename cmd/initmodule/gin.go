@@ -52,6 +52,7 @@ func StartHttpServer(r http.Handler) error {
 	// 给30秒处理未完成的任务
 	return endHttpServer()
 }
+
 func endHttpServer() error {
 	if httpServer == nil {
 		return nil

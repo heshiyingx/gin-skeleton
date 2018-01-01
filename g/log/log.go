@@ -86,6 +86,8 @@ type Log interface {
 	Error(msg string, fields ...zap.Field)
 	Panic(msg string, fields ...zap.Field)
 }
+
+// impl ...
 type impl struct {
 	log *zap.Logger
 }
