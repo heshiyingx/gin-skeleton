@@ -1,4 +1,4 @@
-module skeleton
+module gitlab.myshuju.top/heshiying/gin-skeleton
 
 go 1.16
 
