@@ -16,7 +16,7 @@
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 variables:
-  date_time: $(date +"%Y-%m-%d-%H:%M:%S")
+  date_time: date +"%Y-%m-%d-%H:%M:%S"
   hahhh: "kkkkkk"
 cache:
   key:  $date-time
@@ -63,4 +63,3 @@ deploy-job:      # This job runs in the deploy stage.
     - echo $data_time
     - echo "Deploying application..."
     - echo "Application successfully deployed."
-    - rm -rf target
