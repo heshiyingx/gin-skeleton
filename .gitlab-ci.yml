@@ -31,7 +31,7 @@ build-job-stage1:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - echo ${data_time}
-    - mkdir target
+    - mkdir target || 0
     - echo "build-job-stage1" >> target/a.txt
     - echo "Compiling the code..."
     - echo "Compile complete."
