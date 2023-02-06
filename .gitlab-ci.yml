@@ -17,6 +17,7 @@
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 variables:
   date_time: "${date +'%Y-%m-%d-%H:%M:%S'}"
+  hahhh: "kkkkkk"
 cache:
   key:  $date-time
   paths:
@@ -31,6 +32,7 @@ build-job-stage1:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - echo $date_time
+    - echo $hahhh
     - mkdir target || echo ""
     - echo "build-job-stage1" >> target/a.txt
     - echo "Compiling the code..."
