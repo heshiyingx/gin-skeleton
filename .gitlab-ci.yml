@@ -15,6 +15,12 @@
 # https://docs.gitlab.com/ee/development/cicd/templates.html
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
+variables:
+  date-time: $(date +""%Y-%m-%d %H:%M:%S"")
+cache:
+  key:  $date-time
+  paths:
+    - "target/"
 
 stages:          # List of stages for jobs, and their order of execution
   - build
@@ -24,7 +30,7 @@ stages:          # List of stages for jobs, and their order of execution
 build-job-stage1:       # This job runs in the build stage, which runs first.
   stage: build
   script:
-    - ech "Compiling the code..."
+    - echo "Compiling the code..."
     - echo "Compile complete."
 
 unit-test-job:   # This job runs in the test stage.
