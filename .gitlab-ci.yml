@@ -17,7 +17,7 @@
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 variables:
   date_time: date +"%Y-%m-%d-%H:%M:%S"
-  hahhh: "kkkkkkd"
+  hahhh: "kkkkkkdd"
 cache:
   key:  $date-time
   paths:
