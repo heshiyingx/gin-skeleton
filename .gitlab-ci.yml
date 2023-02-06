@@ -30,7 +30,7 @@ stages:          # List of stages for jobs, and their order of execution
 build-job-stage1:       # This job runs in the build stage, which runs first.
   stage: build
   script:
-    - echo ${data_time}
+    - echo $date_time
     - mkdir target || echo ""
     - echo "build-job-stage1" >> target/a.txt
     - echo "Compiling the code..."
@@ -39,7 +39,7 @@ build-job-stage1:       # This job runs in the build stage, which runs first.
 unit-test-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   script:
-    - echo ${data_time}
+    - echo $data_time
     - echo "unit-test-job" >> target/a.txt
     - echo "Running unit tests... This will take about 60 seconds."
     - echo "Code coverage is 90%"
