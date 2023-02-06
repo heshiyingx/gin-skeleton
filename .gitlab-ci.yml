@@ -63,3 +63,4 @@ deploy-job:      # This job runs in the deploy stage.
     - echo $data_time
     - echo "Deploying application..."
     - echo "Application successfully deployed."
+    - rm -rf target
