@@ -34,7 +34,7 @@ build-job-stage1:       # This job runs in the build stage, which runs first.
     - echo $date_time
     - echo $hahhh
     - mkdir target || echo ""
-    - echo "build-job-stage1-new" >> target/a.txt
+    - echo "build-job-stage1-new1" >> target/a.txt
     - echo "Compiling the code..."
     - echo "Compile complete."
 
