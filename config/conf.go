@@ -1,10 +1,12 @@
 package config
 
+var config = &Config{HttpServerConfig: httpConfig}
+
 // Config ...
 type Config struct {
-	HttpServerConfig HttpConfig
+	HttpServerConfig HttpConfig `mapstructure:"http"`
 }
 
 func GetConfig() *Config {
-	return &Config{httpConfig}
+	return config
 }

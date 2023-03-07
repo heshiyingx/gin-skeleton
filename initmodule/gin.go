@@ -19,6 +19,7 @@ var httpServer *http.Server
 
 // Gin 初始化gin
 func Gin() *gin.Engine {
+	Init()
 	engine := gin.New()
 	extend.RegisterTranslations(engine)
 	logger, _ := zap.NewProductionConfig().Build()
@@ -31,12 +32,13 @@ func Gin() *gin.Engine {
 
 // StartHttpServer httpServer启动
 func StartHttpServer(r http.Handler) error {
+
 	httpServer = &http.Server{
 		Addr:              config.GetConfig().HttpServerConfig.GetAddr(),
 		Handler:           r,
-		ReadTimeout:       config.GetConfig().HttpServerConfig.ReadTimeout,
+		ReadTimeout:       time.Duration(config.GetConfig().HttpServerConfig.ReadTimeoutSec) * time.Second,
 		ReadHeaderTimeout: 0,
-		WriteTimeout:      config.GetConfig().HttpServerConfig.WriteTimeout,
+		WriteTimeout:      time.Duration(config.GetConfig().HttpServerConfig.WriteTimeoutSec) * time.Second,
 	}
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	go func() {

@@ -80,7 +80,7 @@ import (
 //		Interface interface{}
 //	}
 type Log interface {
-	Debug(msg string, fields ...zap.Field)
+	Debug(template string, args ...interface{})
 	Info(msg string, fields ...zap.Field)
 	Warn(msg string, fields ...zap.Field)
 	Error(msg string, fields ...zap.Field)
@@ -93,11 +93,12 @@ type impl struct {
 }
 
 func NewLog() Log {
-	logger, _ := zap.NewProductionConfig().Build()
+	config := zap.NewProductionConfig()
+	logger, _ := config.Build()
 	return &impl{log: logger}
 }
-func (i *impl) Debug(msg string, fields ...zap.Field) {
-	i.log.Debug(msg, fields...)
+func (i *impl) Debug(template string, args ...interface{}) {
+	i.log.Sugar().Infof(template, args...)
 }
 
 func (i *impl) Info(msg string, fields ...zap.Field) {

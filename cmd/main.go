@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gitlab.myshuju.top/heshiying/gin-skeleton/cmd/initmodule"
+	"gitlab.myshuju.top/heshiying/gin-skeleton/initmodule"
 )
 
 func main() {
