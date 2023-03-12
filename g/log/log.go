@@ -94,7 +94,7 @@ type impl struct {
 
 func NewLog() Log {
 	config := zap.NewProductionConfig()
-	logger, _ := config.Build()
+	logger, _ := config.Build(zap.AddCallerSkip(1))
 	return &impl{log: logger}
 }
 func (i *impl) Debug(template string, args ...interface{}) {
@@ -102,6 +102,9 @@ func (i *impl) Debug(template string, args ...interface{}) {
 }
 
 func (i *impl) Info(msg string, fields ...zap.Field) {
+	//stackFiled := zap.StackSkip("stack", 1)
+	//fields = append(fields, stackFiled)
+
 	i.log.Info(msg, fields...)
 }
 

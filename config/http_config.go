@@ -12,7 +12,7 @@ const (
 )
 
 var (
-	httpConfig = HttpConfig{
+	DefaultHttpConfig = HttpConfig{
 		Host:            DEFAULT_HOST,
 		Port:            DEFAULT_PROT,
 		ReadTimeoutSec:  DEFAULT_READ_TIMEOUT,
