@@ -9,6 +9,7 @@ import (
 	"gitlab.myshuju.top/heshiying/gin-skeleton/g"
 	extend2 "gitlab.myshuju.top/heshiying/gin-skeleton/pkg/ginext/resp"
 	"go.uber.org/zap"
+	"math/rand"
 	"net/http"
 	"os/signal"
 	"reflect"
@@ -17,6 +18,7 @@ import (
 )
 
 type RegisterRouterFunc func(r *gin.Engine) error
+type ServerStartFunc func() error
 
 type tempManger struct {
 	midMap            map[uintptr]struct{}
@@ -24,9 +26,10 @@ type tempManger struct {
 }
 
 var (
-	httpServer *http.Server
-	engin      *gin.Engine
-	tm         = &tempManger{
+	httpServer  *http.Server
+	engin       *gin.Engine
+	serverFuncs []ServerStartFunc
+	tm          = &tempManger{
 		midMap:            make(map[uintptr]struct{}, 50),
 		hadCustomerRouter: false,
 	}
@@ -60,14 +63,17 @@ func RegisterRouter(f RegisterRouterFunc) {
 		return
 	}
 }
-func registerDefaultRouter(r *gin.Engine) {
+func registerDefaultRouter(r *gin.Engine) error {
 	r.GET("/ping", func(ctx *gin.Context) {
+		rand.Seed(time.Now().UnixNano())
+		time.Sleep(time.Duration(rand.Int63n(10)) * time.Second)
 		ctx.String(http.StatusOK, "pong")
 	})
 	r.GET("/ok", func(ctx *gin.Context) {
 
 		ctx.String(http.StatusOK, "ok")
 	})
+	return nil
 }
 
 // createGin 初始化gin
@@ -81,10 +87,10 @@ func createGin() *gin.Engine {
 	return engine
 }
 
-// StartHttpServer httpServer启动
-func StartHttpServer(c *config.HttpConfig) error {
+// StartServer Server启动
+func StartServer(c *config.HttpConfig) error {
 	if !tm.hadCustomerRouter {
-		registerDefaultRouter(engin)
+		RegisterRouter(registerDefaultRouter)
 	}
 	if c == nil {
 		c = &config.DefaultHttpConfig
@@ -111,6 +117,14 @@ func StartHttpServer(c *config.HttpConfig) error {
 			}
 		}
 	}()
+	for _, serverFunc := range serverFuncs {
+		go func() {
+			if err := serverFunc(); err != nil {
+				g.Error("serverFunc star err", zap.Error(err))
+				panic(err)
+			}
+		}()
+	}
 	<-ctx.Done()
 	stop()
 
@@ -131,4 +145,8 @@ func endHttpServer() error {
 	}
 	g.Info("http Server had shutdown")
 	return nil
+}
+
+func RegisterServer(f ServerStartFunc) {
+	serverFuncs = append(serverFuncs, f)
 }

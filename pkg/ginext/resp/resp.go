@@ -30,7 +30,7 @@ func SendParamError(ctx *gin.Context, err error) {
 }
 func SendError(ctx *gin.Context, err error) {
 	errInfo := err.Error()
-	ctx.JSON(http.StatusBadRequest, Resp{
+	ctx.JSON(http.StatusInternalServerError, Resp{
 		Success: false,
 		Msg:     errInfo,
 		Data:    nil,

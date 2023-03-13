@@ -8,6 +8,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.0
 	github.com/go-playground/validator/v10 v10.11.1
 	github.com/heshiyingw/gin-ext v0.0.0-20220306161815-6eb154a5599b
+	github.com/prometheus/client_golang v1.14.0
 	github.com/spf13/viper v1.15.0
 	go.uber.org/zap v1.21.0
 )
