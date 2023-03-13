@@ -101,22 +101,19 @@ func useMiddleWithServiceCollect(s *ServerCollect) gin.HandlerFunc {
 func UserPromGatewayMiddleware(name string, gatewayUrl string) gin.HandlerFunc {
 	collect := NewServerCollect(name)
 	c = collect
-	pusher = push.New(gatewayUrl, "db_backup").Collector(collect)
-
-	ginMiddle := useMiddleWithServiceCollect(collect)
-	err := pusher.Add()
-	if err != nil {
-		g.Error("ServerCollect push err", zap.Error(err))
-	}
+	pusher = push.New(gatewayUrl, "svc").Collector(collect)
 	go func() {
-		ticker := time.NewTicker(time.Second * 15)
+		ticker := time.NewTicker(time.Second * 3)
 		for range ticker.C {
-			err = pusher.Add()
+			err := pusher.Push()
 			if err != nil {
 				g.Error("ServerCollect push err", zap.Error(err))
 			}
 		}
 	}()
+
+	ginMiddle := useMiddleWithServiceCollect(collect)
+
 	return ginMiddle
 }
 
