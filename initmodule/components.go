@@ -2,8 +2,6 @@ package initmodule
 
 import (
 	"github.com/spf13/viper"
-	"gitlab.myshuju.top/heshiying/gin-skeleton/g"
-	"go.uber.org/zap"
 	"reflect"
 	"strconv"
 )
@@ -47,9 +45,6 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 	tempTm := vStruct.Type()
 	for i := 0; i < fieldNum; i++ {
 		field := vStruct.Field(i)
-		name := vStruct.Type().Field(i).Name
-		g.Info("", zap.String("", name))
-
 		switch field.Kind() {
 		case reflect.Bool:
 
