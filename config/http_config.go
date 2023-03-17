@@ -22,10 +22,10 @@ var (
 
 // HttpConfig http服务配置
 type HttpConfig struct {
-	Host            string `mapstructure:"host"`
-	Port            int64  `mapstructure:"port"`
-	ReadTimeoutSec  int64  `mapstructure:"read_timeout_sec"`
-	WriteTimeoutSec int64  `mapstructure:"write_timeout_sec"`
+	Host            string `mapstructure:"host" default:"0.0.0.0"`
+	Port            int64  `mapstructure:"port" default:"8080"`
+	ReadTimeoutSec  int64  `mapstructure:"read_timeout_sec" default:"10"`
+	WriteTimeoutSec int64  `mapstructure:"write_timeout_sec" default:"10"`
 }
 
 func init() {

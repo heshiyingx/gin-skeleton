@@ -1,6 +1,6 @@
 package config
 
-var config = &Config{HttpServerConfig: DefaultHttpConfig}
+var config = &Config{}
 
 // Config ...
 type Config struct {
