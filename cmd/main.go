@@ -4,7 +4,7 @@ import (
 	gin_skeleton "gitlab.myshuju.top/heshiying/gin-skeleton"
 	"gitlab.myshuju.top/heshiying/gin-skeleton/config"
 	"gitlab.myshuju.top/heshiying/gin-skeleton/initmodule"
-	"gitlab.myshuju.top/heshiying/gin-skeleton/pkg/db/gorm"
+	"gitlab.myshuju.top/heshiying/gin-skeleton/pkg/db/gormtool"
 	"gitlab.myshuju.top/heshiying/gin-skeleton/pkg/ginext/middleware"
 )
 
@@ -22,7 +22,7 @@ func (u User) TableName() string {
 func main() {
 	cfg := config.GetConfig()
 	initmodule.ConfigToModel("./config.yaml", cfg)
-	err := gorm.InitClient(gorm.Config{
+	err := gormtool.InitClient(gormtool.Config{
 		Database: "study",
 		Host:     "192.168.31.11",
 		Port:     3306,
@@ -33,7 +33,7 @@ func main() {
 	if err != nil {
 		return
 	}
-	client, err := gorm.Client()
+	client, err := gormtool.Client()
 	if err != nil {
 		return
 	}
