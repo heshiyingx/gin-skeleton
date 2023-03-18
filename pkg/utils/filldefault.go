@@ -30,18 +30,19 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 		case reflect.Bool:
 
 			v := tempTm.Field(i).Tag.Get(DEFAULT_KEY)
-			if !field.IsZero() || v == "" {
+			if !field.IsZero() || !field.CanSet() || v == "" {
 				continue
 			}
 			vt, err := strconv.ParseBool(v)
 			if err != nil {
 				panic(err)
 			}
+
 			field.SetBool(vt)
 		case reflect.Int:
 
 			v := tempTm.Field(i).Tag.Get(DEFAULT_KEY)
-			if !field.IsZero() || v == "" {
+			if !field.IsZero() || !field.CanSet() || v == "" {
 				continue
 			}
 			vt, err := strconv.ParseInt(v, 10, 64)
@@ -53,7 +54,7 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 		case reflect.Int8:
 
 			v := tempTm.Field(i).Tag.Get(DEFAULT_KEY)
-			if !field.IsZero() || v == "" {
+			if !field.IsZero() || !field.CanSet() || v == "" {
 				continue
 			}
 			vt, err := strconv.ParseInt(v, 10, 8)
@@ -64,7 +65,7 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 		case reflect.Int16:
 
 			v := tempTm.Field(i).Tag.Get(DEFAULT_KEY)
-			if !field.IsZero() || v == "" {
+			if !field.IsZero() || !field.CanSet() || v == "" {
 				continue
 			}
 			vt, err := strconv.ParseInt(v, 10, 16)
@@ -75,7 +76,7 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 		case reflect.Int32:
 
 			v := tempTm.Field(i).Tag.Get(DEFAULT_KEY)
-			if !field.IsZero() || v == "" {
+			if !field.IsZero() || !field.CanSet() || v == "" {
 				continue
 			}
 			vt, err := strconv.ParseInt(v, 10, 32)
@@ -86,7 +87,7 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 		case reflect.Int64:
 
 			v := tempTm.Field(i).Tag.Get(DEFAULT_KEY)
-			if !field.IsZero() || v == "" {
+			if !field.IsZero() || !field.CanSet() || v == "" {
 				continue
 			}
 			vt, err := strconv.ParseInt(v, 10, 64)
@@ -97,7 +98,7 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 		case reflect.Uint:
 
 			v := tempTm.Field(i).Tag.Get(DEFAULT_KEY)
-			if !field.IsZero() || v == "" {
+			if !field.IsZero() || !field.CanSet() || v == "" {
 				continue
 			}
 			vt, err := strconv.ParseUint(v, 10, 64)
@@ -108,7 +109,7 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 		case reflect.Uint8:
 
 			v := tempTm.Field(i).Tag.Get(DEFAULT_KEY)
-			if !field.IsZero() || v == "" {
+			if !field.IsZero() || !field.CanSet() || v == "" {
 				continue
 			}
 			vt, err := strconv.ParseUint(v, 10, 8)
@@ -119,7 +120,7 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 		case reflect.Uint16:
 
 			v := tempTm.Field(i).Tag.Get(DEFAULT_KEY)
-			if !field.IsZero() || v == "" {
+			if !field.IsZero() || !field.CanSet() || v == "" {
 				continue
 			}
 			vt, err := strconv.ParseUint(v, 10, 16)
@@ -130,7 +131,7 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 		case reflect.Uint32:
 
 			v := tempTm.Field(i).Tag.Get(DEFAULT_KEY)
-			if !field.IsZero() || v == "" {
+			if !field.IsZero() || !field.CanSet() || v == "" {
 				continue
 			}
 			vt, err := strconv.ParseUint(v, 10, 32)
@@ -141,7 +142,7 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 		case reflect.Uint64:
 
 			v := tempTm.Field(i).Tag.Get(DEFAULT_KEY)
-			if !field.IsZero() || v == "" {
+			if !field.IsZero() || !field.CanSet() || v == "" {
 				continue
 			}
 			vt, err := strconv.ParseUint(v, 10, 64)
@@ -152,7 +153,7 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 		case reflect.Float32:
 
 			v := tempTm.Field(i).Tag.Get(DEFAULT_KEY)
-			if !field.IsZero() || v == "" {
+			if !field.IsZero() || !field.CanSet() || v == "" {
 				continue
 			}
 			vt, err := strconv.ParseFloat(v, 32)
@@ -163,7 +164,7 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 		case reflect.Float64:
 
 			v := tempTm.Field(i).Tag.Get(DEFAULT_KEY)
-			if !field.IsZero() || v == "" {
+			if !field.IsZero() || !field.CanSet() || v == "" {
 				continue
 			}
 			vt, err := strconv.ParseFloat(v, 64)
@@ -181,7 +182,7 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 			fileStructDefaultValue(field)
 		case reflect.String:
 			v := tempTm.Field(i).Tag.Get(DEFAULT_KEY)
-			if !field.IsZero() || v == "" {
+			if !field.IsZero() || !field.CanSet() || v == "" {
 				continue
 			}
 			field.Set(reflect.ValueOf(v))
@@ -190,7 +191,7 @@ func fileStructDefaultValue(vStruct reflect.Value) {
 }
 func fileValuePointer(v reflect.Value) {
 	elem := v.Elem()
-	if v.IsZero() || elem.Type().Kind() != reflect.Struct {
+	if !v.IsZero() || elem.Type().Kind() != reflect.Struct {
 		return
 	}
 	fileStructDefaultValue(elem)
