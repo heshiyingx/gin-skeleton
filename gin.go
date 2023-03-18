@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/heshiyingw/gin-ext/middleware"
 	"gitlab.myshuju.top/heshiying/gin-skeleton/config"
+	"gitlab.myshuju.top/heshiying/gin-skeleton/demo"
 	"gitlab.myshuju.top/heshiying/gin-skeleton/g"
 	extend2 "gitlab.myshuju.top/heshiying/gin-skeleton/pkg/ginext/resp"
 	"go.uber.org/zap"
@@ -106,7 +107,7 @@ func StartServer(c *config.HttpConfig) error {
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	tm.midMap = nil
 	go func() {
-		g.Info("start server,", zap.String("listen", config.GetConfig().HttpServerConfig.GetAddr()))
+		g.Info("start server,", zap.String("listen", main.GetConfig().HttpServerConfig.GetAddr()))
 		err := httpServer.ListenAndServe()
 		if err != nil {
 			if err == http.ErrServerClosed {

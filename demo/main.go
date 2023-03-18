@@ -2,7 +2,6 @@ package main
 
 import (
 	gin_skeleton "gitlab.myshuju.top/heshiying/gin-skeleton"
-	"gitlab.myshuju.top/heshiying/gin-skeleton/config"
 	"gitlab.myshuju.top/heshiying/gin-skeleton/initmodule"
 	"gitlab.myshuju.top/heshiying/gin-skeleton/pkg/db/gormtool"
 	"gitlab.myshuju.top/heshiying/gin-skeleton/pkg/ginext/middleware"
@@ -20,7 +19,7 @@ func (u User) TableName() string {
 }
 
 func main() {
-	cfg := config.GetConfig()
+	cfg := GetConfig()
 	initmodule.ConfigToModel("./config.yaml", cfg)
 	err := gormtool.InitClient(gormtool.Config{
 		Database: "study",
