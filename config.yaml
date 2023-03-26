@@ -2,17 +2,3 @@ http:
   read_timeout_sec: 5
 #  write_timeout_sec: 3
   port: 9091
-  ta:
-    - aa: AAAA
-    - aa: BBBB
-    - aa: CCCC
-    - aa: DDDDD
-    - aa: DDDDD
-  ta2:
-    - aa: AAAA
-    - aa: BBBB
-    - aa: CCCC
-    - aa: DDDDD
-    - aa: DDDDD
-  ta1:
-    aa: dd
