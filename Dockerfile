@@ -27,6 +27,6 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS:-linux} GOARCH=${TARGETARCH:-amd64} go build -
 FROM harbor.myshuju.top/gcr.io/distroless/static:nonroot
 WORKDIR /
 COPY --from=builder /workspace/app .
-EXPOSE 9091
+EXPOSE 8080 8080
 
 ENTRYPOINT ["./app"]
