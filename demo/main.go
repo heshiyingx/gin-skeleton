@@ -5,7 +5,6 @@ import (
 	"gitlab.myshuju.top/heshiying/gin-skeleton/demo/config"
 	"gitlab.myshuju.top/heshiying/gin-skeleton/initmodule"
 	"gitlab.myshuju.top/heshiying/gin-skeleton/pkg/db/gormtool"
-	"gitlab.myshuju.top/heshiying/gin-skeleton/pkg/ginext/middleware"
 )
 
 type User struct {
@@ -39,7 +38,7 @@ func main() {
 	}
 	u := User{}
 	err = client.Where("id = ?", 1).Find(&u).Error
-	gin_skeleton.UseMiddleware(middleware.UserPromGatewayMiddleware("mall-order-svc", "http://192.168.31.16:9091/"))
+	//gin_skeleton.UseMiddleware(middleware.UserPromGatewayMiddleware("mall-order-svc", "http://192.168.31.16:9091/"))
 	gin_skeleton.StartServer(&cfg.HttpServerConfig)
 
 	//gin_skeleton.StartHttpServer(nil)
