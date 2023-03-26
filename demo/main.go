@@ -20,8 +20,12 @@ func (u User) TableName() string {
 
 func main() {
 	cfg := config.GetConfig()
-	initmodule.ConfigToModel("./config.yaml", cfg)
-	err := gormtool.InitClient(gormtool.Config{
+	err := initmodule.ConfigToModel("./config.yaml", cfg)
+	if err != nil {
+		panic(err)
+		return
+	}
+	err = gormtool.InitClient(gormtool.Config{
 		Database: "study",
 		Host:     "192.168.31.11",
 		Port:     3306,
@@ -30,6 +34,7 @@ func main() {
 		Retry:    3,
 	})
 	if err != nil {
+		panic(err)
 		return
 	}
 	client, err := gormtool.Client()
