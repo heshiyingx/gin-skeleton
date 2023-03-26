@@ -1,4 +1,4 @@
-package main
+package config
 
 import httpConfig "gitlab.myshuju.top/heshiying/gin-skeleton/config"
 
