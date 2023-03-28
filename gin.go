@@ -1,13 +1,13 @@
-package gin_skeleton
+package ginskeleton
 
 import (
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/heshiyingw/gin-ext/middleware"
-	"gitlab.myshuju.top/heshiying/gin-skeleton/config"
-	"gitlab.myshuju.top/heshiying/gin-skeleton/g"
-	extend2 "gitlab.myshuju.top/heshiying/gin-skeleton/pkg/ginext/resp"
+	"gitlab.myshuju.top/base/ginskeleton/config"
+	"gitlab.myshuju.top/base/ginskeleton/g"
+	extend2 "gitlab.myshuju.top/base/ginskeleton/pkg/ginext/resp"
 	"go.uber.org/zap"
 	"math/rand"
 	"net/http"

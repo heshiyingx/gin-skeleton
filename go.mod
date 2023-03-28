@@ -1,4 +1,4 @@
-module gitlab.myshuju.top/heshiying/gin-skeleton
+module gitlab.myshuju.top/base/ginskeleton
 
 go 1.18
 

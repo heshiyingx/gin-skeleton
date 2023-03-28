@@ -1,6 +1,6 @@
 package g
 
-import "gitlab.myshuju.top/heshiying/gin-skeleton/g/log"
+import "gitlab.myshuju.top/base/ginskeleton/g/log"
 
 var (
 	logger = log.NewLog()

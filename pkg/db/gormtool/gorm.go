@@ -2,7 +2,7 @@ package gormtool
 
 import (
 	"fmt"
-	"gitlab.myshuju.top/heshiying/gin-skeleton/pkg/utils"
+	"gitlab.myshuju.top/base/ginskeleton/pkg/utils"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"time"

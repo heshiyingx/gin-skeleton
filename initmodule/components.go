@@ -2,7 +2,7 @@ package initmodule
 
 import (
 	"github.com/spf13/viper"
-	"gitlab.myshuju.top/heshiying/gin-skeleton/pkg/utils"
+	"gitlab.myshuju.top/base/ginskeleton/pkg/utils"
 )
 
 func ConfigToModel(file string, m interface{}) error {
