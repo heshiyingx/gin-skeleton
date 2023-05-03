@@ -7,6 +7,7 @@ import (
 	"gitlab.myshuju.top/base/ginskeleton/pkg/db/gormtool"
 )
 
+// User 模型
 type User struct {
 	ID      uint64 `gorm:"column:id"`
 	Name    string `gorm:"column:name"`
